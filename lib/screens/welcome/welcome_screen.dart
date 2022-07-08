@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_travel_app/screens/home/home_screen.dart';
 import 'package:flutter_travel_app/utilities/colors.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -28,6 +29,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Spacer(),
                   Text('Welcome',
                       style: TextStyle(
                         fontSize: 30,
@@ -46,24 +48,33 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                   SizedBox(height: 15),
 
-                  //
-                  Container(
-                    height: 55,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: whiteColor,
-                        borderRadius: BorderRadius.circular(100)),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset('assets/icons/google.png',
-                              height: 40, width: 40),
-                          SizedBox(width: 10),
-                          Text('Continue with Google',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w600)),
-                        ]),
+                  // Login button
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomeScreen()));
+                    },
+                    child: Container(
+                      height: 55,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: whiteColor,
+                          borderRadius: BorderRadius.circular(100)),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/icons/google.png',
+                                height: 40, width: 40),
+                            SizedBox(width: 10),
+                            Text('Continue with Google',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w600)),
+                          ]),
+                    ),
                   ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.07),
                 ],
               ),
             ),
