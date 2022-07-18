@@ -23,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const CircleAvatar(
                 radius: 25,
                 backgroundImage: AssetImage('assets/icons/google.png'),
+                backgroundColor: whiteColor,
               ),
               const SizedBox(width: 15),
               RichText(
@@ -77,9 +78,94 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+          ),
+          // Category
+          const SizedBox(height: 15),
+          Row(
+            children: [
+              Text('Category',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Container(
+            height: 70,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                Row(
+                  children: [
+                    CategoryCard(
+                      image: 'assets/images/mountains.jpeg',
+                      press: () {},
+                      title: 'Mountains',
+                    ),
+                    CategoryCard(
+                      image: 'assets/images/forests.jpeg',
+                      press: () {},
+                      title: 'Forests',
+                    ),
+                    CategoryCard(
+                      image: 'assets/images/sea.webp',
+                      press: () {},
+                      title: 'Sea',
+                    ),
+                    CategoryCard(
+                      image: 'assets/images/deserts.jpeg',
+                      press: () {},
+                      title: 'Deserts',
+                    ),
+                  ],
+                ),
+              ],
+            ),
           )
         ],
       ),
     )));
+  }
+}
+
+class CategoryCard extends StatelessWidget {
+  final String title, image;
+  final VoidCallback press;
+  const CategoryCard({
+    Key? key,
+    required this.title,
+    required this.image,
+    required this.press,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 10),
+      child: InkWell(
+        onTap: press,
+        child: Material(
+          elevation: 5,
+          borderRadius: BorderRadius.circular(100),
+          child: Container(
+            height: 55,
+            decoration: BoxDecoration(
+              color: whiteColor,
+              borderRadius: BorderRadius.circular(100),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+              child: Row(children: [
+                CircleAvatar(
+                  backgroundImage: AssetImage(image),
+                ),
+                const SizedBox(width: 5),
+                Text(title,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16))
+              ]),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
