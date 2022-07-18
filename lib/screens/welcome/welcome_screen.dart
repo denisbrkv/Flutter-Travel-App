@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_travel_app/screens/home/home_screen.dart';
 import 'package:flutter_travel_app/utilities/colors.dart';
@@ -30,14 +29,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Spacer(),
-                  Text('Welcome',
+                  const Text('Welcome',
                       style: TextStyle(
                         fontSize: 30,
                         color: whiteColor,
                         fontWeight: FontWeight.w600,
                       )),
                   SizedBox(height: 15),
-                  Text(
+                  const Text(
                     'The journey is your home. Explore the world with our travel app and get the feeling like your own home.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -68,7 +67,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             Image.asset('assets/icons/google.png',
                                 height: 40, width: 40),
                             SizedBox(width: 10),
-                            Text('Continue with Google',
+                            const Text('Continue with Google',
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.w600)),
                           ]),
