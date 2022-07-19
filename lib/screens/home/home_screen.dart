@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_travel_app/model/place_model.dart';
+import 'package:flutter_travel_app/screens/detailsscreen/detail_screen.dart';
 import 'package:flutter_travel_app/screens/home/widgets/category_card.dart';
+import 'package:flutter_travel_app/screens/home/widgets/recommended_card.dart';
 import 'package:flutter_travel_app/utilities/colors.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -128,82 +130,34 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
           ],
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 20),
         Container(
-            height: 350,
-            child: ListView.builder(
-                itemCount: places.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 5, right: 15),
-                    child: Row(
-                      children: [
-                        RecommendedCard(
-                          placeInfo: places[index],
-                          press: () {},
-                        )
-                      ],
-                    ),
-                  );
-                })),
+          height: 320,
+          child: ListView.builder(
+              itemCount: places.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding:
+                      const EdgeInsets.only(left: 5, right: 15, bottom: 10),
+                  child: Row(
+                    children: [
+                      RecommendedCard(
+                        placeInfo: places[index],
+                        press: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      DetailScreen(placeInfo: places[index])));
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              }),
+        ),
       ]),
     )));
-  }
-}
-
-class RecommendedCard extends StatelessWidget {
-  final PlaceInfo placeInfo;
-  final VoidCallback press;
-  const RecommendedCard({
-    Key? key,
-    required this.placeInfo,
-    required this.press,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      elevation: 5,
-      borderRadius: BorderRadius.circular(20),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: 220,
-              width: 200,
-              decoration: BoxDecoration(
-                color: whiteColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Container(
-                height: 150,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image: DecorationImage(
-                        fit: BoxFit.cover, image: AssetImage(placeInfo.image))),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text(placeInfo.name,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                Icon(
-                  Icons.location_on,
-                  color: primaryColor,
-                ),
-                Text(placeInfo.location,
-                    style: const TextStyle(color: Colors.grey, fontSize: 14))
-              ],
-            )
-          ],
-        ),
-      ),
-    );
   }
 }
